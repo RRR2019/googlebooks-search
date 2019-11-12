@@ -17,8 +17,7 @@ class SearchBooks extends Component {
     };
 
   handleInputChange = event => {
-    // Destructure the name and value properties off of event.target
-    // Update the appropriate state
+
     const { name, value } = event.target;
     this.setState({
       [name]: value
@@ -44,7 +43,7 @@ class SearchBooks extends Component {
                             key: result.id,
                             id: result.id,
                             title: result.volumeInfo.title,
-                            authors: result.volumeInfo.authors,
+                            authors: result.volumeInfo.authors[0],
                             description: result.volumeInfo.description,
                             image: result.volumeInfo.imageLinks.thumbnail,
                             link: result.volumeInfo.infoLink
@@ -56,6 +55,16 @@ class SearchBooks extends Component {
                 }
             })
             .catch(err => this.setState({ error: err.items }));
+    }
+
+    handleSaveButton = event => {
+        event.preventDefault();
+        console.log(this.state.books)
+        let savedBooks = this.state.books.filter(book => book.id === event.target.id)
+        savedBooks = savedBooks[0];
+        API.saveBook(savedBooks)
+            .then(this.setState({ message: alert("Book saved!") }))
+            .catch(err => console.log(err))
     }
 
 
@@ -106,6 +115,9 @@ class SearchBooks extends Component {
                         link={book.link}
                         description={book.description}
                         image={book.image}
+                        authors={book.authors}
+                        books={this.state.books}
+                        handleSaveButton={this.handleSaveButton}
                       />
                     );
                   })}

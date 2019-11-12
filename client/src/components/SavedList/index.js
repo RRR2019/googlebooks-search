@@ -5,12 +5,12 @@ import { Container, Row, Col } from "../Grid";
 // Exporting both RecipeList and RecipeListItem from this file
 
 // RecipeList renders a bootstrap list item
-export function BookList({ children }) {
+export function SavedList({ children }) {
   return <ul className="list-group">{children}</ul>;
 }
 
 // RecipeListItem renders a bootstrap list item containing data from the recipe api call
-export function BookListItem(props) {
+export function SavedListItem(props) {
   return (
     <li className="list-group-item">
       <Container>
@@ -25,7 +25,7 @@ export function BookListItem(props) {
             <a rel="noreferrer noopener" target="_blank" href={props.link}>
               Go to link!
             </a>
-            <button className="btn btn-primary" id={props.id} onClick={(event) => props.handleSaveButton(event)}>
+            <button className="btn btn-primary" id={props.id} onClick={(event) => props.handleDeleteButton(event)}>
               Save Book
             </button>
           </Col>
