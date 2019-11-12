@@ -25,8 +25,8 @@ export function SavedListItem(props) {
             <a rel="noreferrer noopener" target="_blank" href={props.link}>
               Go to link!
             </a>
-            <button className="btn btn-primary" id={props.id} onClick={(event) => props.handleDeleteButton(event)}>
-              Save Book
+            <button className="btn btn-danger" id={props.id} onClick={() => props.handleDeleteButton(props.id)}>
+              Delete Book
             </button>
           </Col>
         </Row>

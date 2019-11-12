@@ -48,7 +48,8 @@ render() {
                   {this.state.savedBooks.map(book => {
                     return (
                       <SavedListItem
-                        key={book.id}
+                        key={book._id}
+                        id={book._id}
                         title={book.title}
                         link={book.link}
                         description={book.description}
